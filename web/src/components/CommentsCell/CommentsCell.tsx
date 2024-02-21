@@ -16,6 +16,7 @@ query CommentsQuery($postId: Int!) {
     id
     name
     body
+    postId
     createdAt
   }
 }

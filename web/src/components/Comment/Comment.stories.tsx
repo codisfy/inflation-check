@@ -23,15 +23,35 @@ export default meta
 
 type Story = StoryObj<typeof Comment>
 
-export const Primary: Story = {
-  render: (args) => {
-    return <Comment {...args} />
-  },
-  args: {
-    comment: {
-      name: 'Jane',
-      createdAt: '2021-07-01T12:00:00Z',
-      body: 'This is a comment.',
-    },
-  },
+export const defaultView = () => {
+  return (
+    <Comment
+      comment={{
+        id: 1,
+        name: 'Rob Cameron',
+        body: 'This is the first comment!',
+        createdAt: '2020-01-01T12:34:56Z',
+        postId: 1,
+      }}
+    />
+  )
+}
+
+export const moderatorView = () => {
+  mockCurrentUser({
+    id: 1,
+    email: 'moderator@moderator.com',
+    roles: 'moderator',
+  })
+  return (
+    <Comment
+      comment={{
+        id: 1,
+        name: 'Rob Cameron',
+        body: 'This is the first comment!',
+        createdAt: '2020-01-01T12:34:56Z',
+        postId: 1,
+      }}
+    />
+  )
 }
