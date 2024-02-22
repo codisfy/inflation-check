@@ -7,26 +7,14 @@ export const posts: QueryResolvers['posts'] = () => {
 }
 
 export const post: QueryResolvers['post'] = ({ id }) => {
-  return db.post.findUnique({
-    where: { id },
-  })
+  return db.post.findUnique({ where: { id } })
 }
 
-export const createPost: MutationResolvers['createPost'] = ({ input }) => {
-  return db.post.create({
-    data: input,
-  })
-}
-
-export const updatePost: MutationResolvers['updatePost'] = ({ id, input }) => {
-  return db.post.update({
-    data: input,
-    where: { id },
-  })
-}
-
-export const deletePost: MutationResolvers['deletePost'] = ({ id }) => {
-  return db.post.delete({
-    where: { id },
-  })
+/**
+ * Define the resolvers for the Post schema type
+ * This matches the shape of the `Post` schema in `api/src/graphql/posts.sdl.ts`
+ */
+export const Post = {
+  user: (_obj, { root }) =>
+    db.post.findUnique({ where: { id: root.id } }).user(),
 }
