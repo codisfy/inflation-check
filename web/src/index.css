@@ -11,53 +11,141 @@
 /**
  * END --- SETUP TAILWINDCSS EDIT
  */
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+ @layer base {
+  html {
+    font-family: "Urbanist", system-ui, sans-serif;
+  }
 }
-ul {
-  list-style-type: none;
-  margin: 1rem 0;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 1rem 0 0 ;
-}
-h1 > a {
-  text-decoration: none;
-  color: black;
-}
-button, input, label, textarea {
-  display: block;
-  outline: none;
-}
-label {
-  margin-top: 1rem;
-}
-.error {
-  color: red;
-}
-input.error, textarea.error {
-  border: 1px solid red;
-}
-.form-error {
-  color: red;
-  background-color: lavenderblush;
-  padding: 1rem;
-  display: inline-block;
-}
-.form-error ul {
-  list-style-type: disc;
-  margin: 1rem;
-  padding: 1rem;
-}
-.form-error li {
-  display: list-item;
-}
-.flex-between {
-  display: flex;
-  justify-content: space-between;
-}
-.flex-between button {
-  display: inline;
+
+@layer base {
+  :root {
+    --text-50: #fee6ef;
+    --text-100: #fdcedf;
+    --text-200: #fc9cbf;
+    --text-300: #fa6b9f;
+    --text-400: #f9397f;
+    --text-500: #f70860;
+    --text-600: #c6064c;
+    --text-700: #940539;
+    --text-800: #630326;
+    --text-900: #310213;
+    --text-950: #19010a;
+
+    --background-50: #ffe5f0;
+    --background-100: #ffcce0;
+    --background-200: #ff99c2;
+    --background-300: #ff66a3;
+    --background-400: #ff3385;
+    --background-500: #ff0066;
+    --background-600: #cc0052;
+    --background-700: #99003d;
+    --background-800: #660029;
+    --background-900: #330014;
+    --background-950: #1a000a;
+
+    --primary-50: #fee6f0;
+    --primary-100: #fecde1;
+    --primary-200: #fd9bc4;
+    --primary-300: #fc69a6;
+    --primary-400: #fb3789;
+    --primary-500: #fa056b;
+    --primary-600: #c80456;
+    --primary-700: #960340;
+    --primary-800: #64022b;
+    --primary-900: #320115;
+    --primary-950: #19010b;
+
+    --secondary-50: #fee8e6;
+    --secondary-100: #fed2cd;
+    --secondary-200: #fda59b;
+    --secondary-300: #fc7869;
+    --secondary-400: #fb4b37;
+    --secondary-500: #fa1e05;
+    --secondary-600: #c81804;
+    --secondary-700: #961203;
+    --secondary-800: #640c02;
+    --secondary-900: #320601;
+    --secondary-950: #190301;
+
+    --accent-50: #feeee6;
+    --accent-100: #feddcd;
+    --accent-200: #fdbc9b;
+    --accent-300: #fc9a69;
+    --accent-400: #fb7837;
+    --accent-500: #fa5705;
+    --accent-600: #c84504;
+    --accent-700: #963403;
+    --accent-800: #642302;
+    --accent-900: #321101;
+    --accent-950: #190901;
+
+    --linearPrimarySecondary: linear-gradient(#fa0f71, #fc8173);
+    --linearPrimaryAccent: linear-gradient(#fa0f71, #fb7f42);
+    --linearSecondaryAccent: linear-gradient(#fc8173, #fb7f42);
+    --radialPrimarySecondary: radial-gradient(#fa0f71, #fc8173);
+    --radialPrimaryAccent: radial-gradient(#fa0f71, #fb7f42);
+    --radialSecondaryAccent: radial-gradient(#fc8173, #fb7f42);
+  }
+  .dark {
+    --text-50: #19010a;
+    --text-100: #310214;
+    --text-200: #630328;
+    --text-300: #94053c;
+    --text-400: #c60650;
+    --text-500: #f70864;
+    --text-600: #f93983;
+    --text-700: #fa6ba2;
+    --text-800: #fc9cc1;
+    --text-900: #fdcee0;
+    --text-950: #fee6ef;
+
+    --background-50: #1a000a;
+    --background-100: #330014;
+    --background-200: #660029;
+    --background-300: #99003d;
+    --background-400: #cc0052;
+    --background-500: #ff0066;
+    --background-600: #ff3385;
+    --background-700: #ff66a3;
+    --background-800: #ff99c2;
+    --background-900: #ffcce0;
+    --background-950: #ffe5f0;
+
+    --primary-50: #19010b;
+    --primary-100: #320115;
+    --primary-200: #64022b;
+    --primary-300: #960340;
+    --primary-400: #c80456;
+    --primary-500: #fa056b;
+    --primary-600: #fb3789;
+    --primary-700: #fc69a6;
+    --primary-800: #fd9bc4;
+    --primary-900: #fecde1;
+    --primary-950: #fee6f0;
+
+    --secondary-50: #190301;
+    --secondary-100: #320601;
+    --secondary-200: #640c02;
+    --secondary-300: #961203;
+    --secondary-400: #c81804;
+    --secondary-500: #fa1e05;
+    --secondary-600: #fb4b37;
+    --secondary-700: #fc7869;
+    --secondary-800: #fda59b;
+    --secondary-900: #fed2cd;
+    --secondary-950: #fee8e6;
+
+    --accent-50: #190901;
+    --accent-100: #321101;
+    --accent-200: #642302;
+    --accent-300: #963403;
+    --accent-400: #c84504;
+    --accent-500: #fa5705;
+    --accent-600: #fb7837;
+    --accent-700: #fc9a69;
+    --accent-800: #fdbc9b;
+    --accent-900: #feddcd;
+    --accent-950: #feeee6;
+
+  }
 }
