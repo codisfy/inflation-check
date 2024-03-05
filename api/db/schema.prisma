@@ -17,43 +17,67 @@ generator client {
 // Define your own datamodels here and run `yarn redwood prisma migrate dev`
 // to create migrations for them and apply to your dev DB.
 // TODO: Please remove the following example:
-model UserExample {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+model Product {
+  id            Int                @id @default(autoincrement())
+  name          String
+  description   String?
+  categoryId    Int
+  baseUnitId    Int
+  meta          Json?
+  category      Category           @relation(fields: [categoryId], references: [id])
+  baseUnit      QuantityUnit       @relation(fields: [baseUnitId], references: [id])
+  prices        Price[]
 }
-model Post {
-  id        Int      @id @default(autoincrement())
-  title     String
-  body      String
-  comments  Comment[]
-  user User @relation(fields: [userId], references: [id])
-  userId    Int
-  createdAt DateTime @default(now())
+
+model Category {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  products  Product[]
 }
-model Contact {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String
-  message   String
-  createdAt DateTime @default(now())
+
+model QuantityUnit {
+  id                 Int                  @id @default(autoincrement())
+  unitName           String               @unique
+  products           Product[]
+  quantityConversionsFrom QuantityConversion[] @relation("FromUnit")
+  quantityConversionsTo   QuantityConversion[] @relation("ToUnit")
+  prices             Price[]
 }
-model User {
-  id                  Int       @id @default(autoincrement())
-  name                String?
-  email               String    @unique
-  hashedPassword      String
-  salt                String
-  resetToken          String?
-  resetTokenExpiresAt DateTime?
-  roles               String @default("moderator")
-  posts     Post[]
+
+model QuantityConversion {
+  id                Int           @id @default(autoincrement())
+  fromUnitId        Int
+  toUnitId          Int
+  conversionFactor  Float
+  fromUnit          QuantityUnit  @relation("FromUnit", fields: [fromUnitId], references: [id])
+  toUnit            QuantityUnit  @relation("ToUnit", fields: [toUnitId], references: [id])
 }
-model Comment {
-  id        Int      @id @default(autoincrement())
-  name      String
-  body      String
-  post      Post     @relation(fields: [postId], references: [id])
-  postId    Int
-  createdAt DateTime @default(now())
+
+model Price {
+  id          Int         @id @default(autoincrement())
+  productId   Int
+  storeId     Int?
+  locationId  Int?
+  quantityId  Int
+  price       Float
+  currency    String
+  date        DateTime
+  product     Product     @relation(fields: [productId], references: [id])
+  store       Store?      @relation(fields: [storeId], references: [id])
+  location    Location?   @relation(fields: [locationId], references: [id])
+  quantityUnit QuantityUnit @relation(fields: [quantityId], references: [id])
+}
+
+model Store {
+  id      Int     @id @default(autoincrement())
+  name    String
+  prices  Price[]
+}
+
+model Location {
+  id        Int     @id @default(autoincrement())
+  city      String
+  province  String
+  address   String
+  prices    Price[]
 }

@@ -1,0 +1,71 @@
+version: "3.8"
+
+services:
+  redwood:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: base
+    command: yarn rw dev
+    volumes:
+      - .:/home/node/app
+      - node_modules:/home/node/app/node_modules
+    ports:
+      - "8910:8910"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://timescaledb:password@localhost:5432/inflation
+      - TEST_DATABASE_URL=postgresql://timescaledb:password@localhost:5432/inflation_test
+      - SESSION_SECRET=super_secret_session_key_change_me_in_production_please
+      - CI=
+      - NODE_ENV=development
+      - REDWOOD_API_HOST=0.0.0.0
+
+  timescaledb:
+    image: timescale/timescaledb-ha:pg16
+    container_name: timescaledb
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: timescaledb
+      POSTGRES_PASSWORD: password
+    ## run init.sql
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - /../data/timescaledb:/var/lib/postgresql/data
+
+  redis:
+    image: redis:6.2.6
+    container_name: fastapi-redis
+    command: redis-server --port 6379
+    restart: always
+    ports:
+      - "6379:6379"
+
+  # After starting with `docker compose -f ./docker-compose.dev.yml up`,
+  # use the console to run commands in the container:
+  #
+  # ```
+  # docker compose -f ./docker-compose.dev.yml run --rm -it console /bin/bash
+  # root@...:/home/node/app# yarn rw prisma migrate dev
+  # ```
+  console:
+    user: root
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: console
+    tmpfs:
+      - /tmp
+    command: "true"
+    environment:
+      - DATABASE_URL=postgresql://redwood:redwood@db:5432/redwood
+      - TEST_DATABASE_URL=postgresql://redwood:redwood@db:5432/redwood_test
+    depends_on:
+      - db
+
+volumes:
+  node_modules:
+  postgres:

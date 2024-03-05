@@ -4415,6 +4415,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@popperjs/core@npm:^2.11.2":
+  version: 2.11.8
+  resolution: "@popperjs/core@npm:2.11.8"
+  checksum: 10c0/4681e682abc006d25eb380d0cf3efc7557043f53b6aea7a5057d0d1e7df849a00e281cd8ea79c902a35a414d7919621fc2ba293ecec05f413598e0b23d5a1e63
+  languageName: node
+  linkType: hard
+
 "@prisma/client@npm:5.9.1":
   version: 5.9.1
   resolution: "@prisma/client@npm:5.9.1"
@@ -8709,6 +8716,7 @@ __metadata:
   resolution: "api@workspace:api"
   dependencies:
     "@redwoodjs/api": "npm:7.0.0"
+    "@redwoodjs/api-server": "npm:7.0.0"
     "@redwoodjs/auth-dbauth-api": "npm:7.0.0"
     "@redwoodjs/graphql-server": "npm:7.0.0"
   languageName: unknown
@@ -19784,6 +19792,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"preline@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "preline@npm:2.0.3"
+  dependencies:
+    "@popperjs/core": "npm:^2.11.2"
+  checksum: 10c0/ba99e3ce69de4d018997311fa2b065144b3de6c221b51f7994298613bc6a8c97b3c06ce52745fc080df46bf555ac55607dd209ccd5c8ad674ee4a60da46a2edb
+  languageName: node
+  linkType: hard
+
 "prelude-ls@npm:^1.2.1":
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
@@ -24047,12 +24064,14 @@ __metadata:
     "@redwoodjs/router": "npm:7.0.0"
     "@redwoodjs/vite": "npm:7.0.0"
     "@redwoodjs/web": "npm:7.0.0"
+    "@redwoodjs/web-server": "npm:7.0.0"
     "@types/react": "npm:^18.2.55"
     "@types/react-dom": "npm:^18.2.19"
     autoprefixer: "npm:^10.4.17"
     humanize-string: "npm:2.1.0"
     postcss: "npm:^8.4.35"
     postcss-loader: "npm:^8.1.0"
+    preline: "npm:^2.0.3"
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
     tailwindcss: "npm:^3.4.1"

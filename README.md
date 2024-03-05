@@ -120,3 +120,13 @@ The best way to learn Redwood is by going through the comprehensive [tutorial](h
 
 - Stay updated: read [Forum announcements](https://community.redwoodjs.com/c/announcements/5), follow us on [Twitter](https://twitter.com/redwoodjs), and subscribe to the [newsletter](https://redwoodjs.com/newsletter)
 - [Learn how to contribute](https://redwoodjs.com/docs/contributing)
+
+
+## Local Setup
+
+1. Set this up inside a directory structure like, to allow for docker db data to be stored here
+```
+inflation-check
+  - data
+  - inflation-check (this repo)
+```
