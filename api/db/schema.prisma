@@ -81,3 +81,13 @@ model Location {
   address   String
   prices    Price[]
 }
+model User {
+  id                  Int       @id @default(autoincrement())
+  name                String?
+  email               String    @unique
+  hashedPassword      String
+  salt                String
+  resetToken          String?
+  resetTokenExpiresAt DateTime?
+  roles               String @default("admin")
+}
