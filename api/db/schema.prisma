@@ -92,3 +92,10 @@ model User {
   resetTokenExpiresAt DateTime?
   roles               String @default("admin")
 }
+model Contact {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+}

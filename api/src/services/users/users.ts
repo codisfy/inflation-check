@@ -11,9 +11,3 @@ export const user: QueryResolvers['user'] = ({ id }) => {
     where: { id },
   })
 }
-
-export const User: UserRelationResolvers = {
-  posts: (_obj, { root }) => {
-    return db.user.findUnique({ where: { id: root?.id } }).posts()
-  },
-}
