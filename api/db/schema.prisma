@@ -20,6 +20,7 @@ generator client {
 model Product {
   id            Int                @id @default(autoincrement())
   name          String
+  genericName   String?
   description   String?
   categoryId    Int
   baseUnitId    Int

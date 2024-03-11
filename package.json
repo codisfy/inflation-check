@@ -7,10 +7,12 @@
     ]
   },
   "devDependencies": {
-    "@redwoodjs/auth-dbauth-setup": "7.0.0",
-    "@redwoodjs/cli-storybook": "7.0.0",
-    "@redwoodjs/core": "7.0.0",
-    "@redwoodjs/project-config": "7.0.0",
+    "@redwoodjs/auth-dbauth-setup": "7.1.2",
+    "@redwoodjs/cli-storybook": "7.1.2",
+    "@redwoodjs/core": "7.1.2",
+    "@redwoodjs/project-config": "7.1.2",
+    "csv-parser": "^3.0.0",
+    "fuzzball": "^2.1.2",
     "prettier-plugin-tailwindcss": "0.4.1"
   },
   "eslintConfig": {
