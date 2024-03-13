@@ -37,4 +37,26 @@ export const schema = gql`
     currency: String
     date: DateTime
   }
+
+  type PriceChange {
+    productId: Int
+    productName: String
+    genericName: String
+    oldestPrice: Float
+    newestPrice: Float
+    oldestDate: DateTime
+    newestDate: DateTime
+    percentChange: Float
+    direction: String
+  }
+
+  type Query {
+    topPriceChanges(
+      startDate: DateTime!
+      endDate: DateTime!
+      direction: String
+      limit: Int
+      offset: Int
+    ): [PriceChange]! @skipAuth
+  }
 `
