@@ -11,7 +11,7 @@
 /**
  * END --- SETUP TAILWINDCSS EDIT
  */
- @layer base {
+@layer base {
   html {
     font-family: "Urbanist", system-ui, sans-serif;
   }
@@ -19,133 +19,134 @@
 
 @layer base {
   :root {
-    --text-50: #fee6ef;
-    --text-100: #fdcedf;
-    --text-200: #fc9cbf;
-    --text-300: #fa6b9f;
-    --text-400: #f9397f;
-    --text-500: #f70860;
-    --text-600: #c6064c;
+    --text-50: #FEE6EF;
+    --text-100: #FDCEDF;
+    --text-200: #FC9CBF;
+    --text-300: #FA6B9F;
+    --text-400: #F9397F;
+    --text-500: #F70860;
+    --text-600: #C6064C;
     --text-700: #940539;
     --text-800: #630326;
     --text-900: #310213;
-    --text-950: #19010a;
+    --text-950: #19010A;
 
-    --background-50: #ffe5f0;
-    --background-100: #ffcce0;
-    --background-200: #ff99c2;
-    --background-300: #ff66a3;
-    --background-400: #ff3385;
-    --background-500: #ff0066;
-    --background-600: #cc0052;
-    --background-700: #99003d;
+    --background-50: #FFE5F0;
+    --background-100: #FFCCE0;
+    --background-200: #FF99C2;
+    --background-300: #FF66A3;
+    --background-400: #FF3385;
+    --background-500: #FF0066;
+    --background-600: #CC0052;
+    --background-700: #99003D;
     --background-800: #660029;
     --background-900: #330014;
-    --background-950: #1a000a;
+    --background-950: #1A000A;
 
-    --primary-50: #fee6f0;
-    --primary-100: #fecde1;
-    --primary-200: #fd9bc4;
-    --primary-300: #fc69a6;
-    --primary-400: #fb3789;
-    --primary-500: #fa056b;
-    --primary-600: #c80456;
+    --primary-50: #FEE6F0;
+    --primary-100: #FECDE1;
+    --primary-200: #FD9BC4;
+    --primary-300: #FC69A6;
+    --primary-400: #FB3789;
+    --primary-500: #FA056B;
+    --primary-600: #C80456;
     --primary-700: #960340;
-    --primary-800: #64022b;
+    --primary-800: #64022B;
     --primary-900: #320115;
-    --primary-950: #19010b;
+    --primary-950: #19010B;
 
-    --secondary-50: #fee8e6;
-    --secondary-100: #fed2cd;
-    --secondary-200: #fda59b;
-    --secondary-300: #fc7869;
-    --secondary-400: #fb4b37;
-    --secondary-500: #fa1e05;
-    --secondary-600: #c81804;
+    --secondary-50: #FEE8E6;
+    --secondary-100: #FED2CD;
+    --secondary-200: #FDA59B;
+    --secondary-300: #FC7869;
+    --secondary-400: #FB4B37;
+    --secondary-500: #FA1E05;
+    --secondary-600: #C81804;
     --secondary-700: #961203;
-    --secondary-800: #640c02;
+    --secondary-800: #640C02;
     --secondary-900: #320601;
     --secondary-950: #190301;
 
-    --accent-50: #feeee6;
-    --accent-100: #feddcd;
-    --accent-200: #fdbc9b;
-    --accent-300: #fc9a69;
-    --accent-400: #fb7837;
-    --accent-500: #fa5705;
-    --accent-600: #c84504;
+    --accent-50: #FEEEE6;
+    --accent-100: #FEDDCD;
+    --accent-200: #FDBC9B;
+    --accent-300: #FC9A69;
+    --accent-400: #FB7837;
+    --accent-500: #FA5705;
+    --accent-600: #C84504;
     --accent-700: #963403;
     --accent-800: #642302;
     --accent-900: #321101;
     --accent-950: #190901;
 
-    --linearPrimarySecondary: linear-gradient(#fa0f71, #fc8173);
-    --linearPrimaryAccent: linear-gradient(#fa0f71, #fb7f42);
-    --linearSecondaryAccent: linear-gradient(#fc8173, #fb7f42);
-    --radialPrimarySecondary: radial-gradient(#fa0f71, #fc8173);
-    --radialPrimaryAccent: radial-gradient(#fa0f71, #fb7f42);
-    --radialSecondaryAccent: radial-gradient(#fc8173, #fb7f42);
+    --linearPrimarySecondary: linear-gradient(90deg, #FA0F71, #FC8173);
+    --linearPrimaryAccent: linear-gradient(90deg, #FA0F71, #FB7F42);
+    --linearSecondaryAccent: linear-gradient(90deg, #FC8173, #FB7F42);
+    --radialPrimarySecondary: radial-gradient(#FA0F71, #FC8173);
+    --radialPrimaryAccent: radial-gradient(#FA0F71, #FB7F42);
+    --radialSecondaryAccent: radial-gradient(#FC8173, #FB7F42);
   }
+
   .dark {
-    --text-50: #19010a;
+    --text-50: #19010A;
     --text-100: #310214;
     --text-200: #630328;
-    --text-300: #94053c;
-    --text-400: #c60650;
-    --text-500: #f70864;
-    --text-600: #f93983;
-    --text-700: #fa6ba2;
-    --text-800: #fc9cc1;
-    --text-900: #fdcee0;
-    --text-950: #fee6ef;
+    --text-300: #94053C;
+    --text-400: #C60650;
+    --text-500: #F70864;
+    --text-600: #F93983;
+    --text-700: #FA6BA2;
+    --text-800: #FC9CC1;
+    --text-900: #FDCEE0;
+    --text-950: #FEE6EF;
 
-    --background-50: #1a000a;
+    --background-50: #1A000A;
     --background-100: #330014;
     --background-200: #660029;
-    --background-300: #99003d;
-    --background-400: #cc0052;
-    --background-500: #ff0066;
-    --background-600: #ff3385;
-    --background-700: #ff66a3;
-    --background-800: #ff99c2;
-    --background-900: #ffcce0;
-    --background-950: #ffe5f0;
+    --background-300: #99003D;
+    --background-400: #CC0052;
+    --background-500: #FF0066;
+    --background-600: #FF3385;
+    --background-700: #FF66A3;
+    --background-800: #FF99C2;
+    --background-900: #FFCCE0;
+    --background-950: #FFE5F0;
 
-    --primary-50: #19010b;
+    --primary-50: #19010B;
     --primary-100: #320115;
-    --primary-200: #64022b;
+    --primary-200: #64022B;
     --primary-300: #960340;
-    --primary-400: #c80456;
-    --primary-500: #fa056b;
-    --primary-600: #fb3789;
-    --primary-700: #fc69a6;
-    --primary-800: #fd9bc4;
-    --primary-900: #fecde1;
-    --primary-950: #fee6f0;
+    --primary-400: #C80456;
+    --primary-500: #FA056B;
+    --primary-600: #FB3789;
+    --primary-700: #FC69A6;
+    --primary-800: #FD9BC4;
+    --primary-900: #FECDE1;
+    --primary-950: #FEE6F0;
 
     --secondary-50: #190301;
     --secondary-100: #320601;
-    --secondary-200: #640c02;
+    --secondary-200: #640C02;
     --secondary-300: #961203;
-    --secondary-400: #c81804;
-    --secondary-500: #fa1e05;
-    --secondary-600: #fb4b37;
-    --secondary-700: #fc7869;
-    --secondary-800: #fda59b;
-    --secondary-900: #fed2cd;
-    --secondary-950: #fee8e6;
+    --secondary-400: #C81804;
+    --secondary-500: #FA1E05;
+    --secondary-600: #FB4B37;
+    --secondary-700: #FC7869;
+    --secondary-800: #FDA59B;
+    --secondary-900: #FED2CD;
+    --secondary-950: #FEE8E6;
 
     --accent-50: #190901;
     --accent-100: #321101;
     --accent-200: #642302;
     --accent-300: #963403;
-    --accent-400: #c84504;
-    --accent-500: #fa5705;
-    --accent-600: #fb7837;
-    --accent-700: #fc9a69;
-    --accent-800: #fdbc9b;
-    --accent-900: #feddcd;
-    --accent-950: #feeee6;
+    --accent-400: #C84504;
+    --accent-500: #FA5705;
+    --accent-600: #FB7837;
+    --accent-700: #FC9A69;
+    --accent-800: #FDBC9B;
+    --accent-900: #FEDDCD;
+    --accent-950: #FEEEE6;
 
   }
 }

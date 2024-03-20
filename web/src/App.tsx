@@ -20,7 +20,6 @@ import './scaffold.css'
 import './index.css'
 
 const App = () => {
-
   return (
     <FatalErrorBoundary page={FatalErrorPage}>
       <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">

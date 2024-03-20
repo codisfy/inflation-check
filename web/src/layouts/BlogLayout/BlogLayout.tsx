@@ -1,16 +1,16 @@
 import { useEffect } from 'react'
 
+import Datepicker from 'react-tailwindcss-datepicker'
+
 import { Link, routes, useLocation } from '@redwoodjs/router'
 import { Toaster } from '@redwoodjs/web/toast'
 
-import { useAuth } from 'src/auth'
-
+import { useDatesStore } from 'src/stores'
 type BlogLayoutProps = {
   children?: React.ReactNode
 }
 
 const BlogLayout = ({ children }: BlogLayoutProps) => {
-  const { isAuthenticated, currentUser, logOut } = useAuth()
   const location = useLocation()
 
   // this is some code coming from preline ui
@@ -18,10 +18,16 @@ const BlogLayout = ({ children }: BlogLayoutProps) => {
     window.HSStaticMethods.autoInit()
   }, [location.pathname])
 
+  const { dates, setDates } = useDatesStore()
+
+  const handleValueChange = (newDates) => {
+    console.log('newDates:', newDates)
+    setDates(newDates)
+  }
   return (
     <>
       <Toaster />
-      <header className="container relative mx-auto flex items-center justify-between bg-radial-primary-secondary px-8 py-4 text-white">
+      <header className="container relative mx-auto flex items-center justify-between border-b-2 px-8 py-4 text-white">
         <h1 className="font-semibold tracking-tight">
           <Link
             className="text-primary-400 transition duration-100 hover:text-blue-100"
@@ -36,50 +42,24 @@ const BlogLayout = ({ children }: BlogLayoutProps) => {
             <span className="text-[32px]">i</span>
             <span className="text-[34px]">o</span>
             <span className="text-[36px]">n</span>
-
           </Link>
         </h1>
-        <nav>
-          <ul className="font-light relative flex items-center">
-            <li>
-              <Link
-                className="rounded px-4 py-2 transition duration-100 hover:bg-blue-600"
-                to={routes.about()}
-              >
-                About
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="rounded px-4 py-2 transition duration-100 hover:bg-blue-600"
-                to={routes.contact()}
-              >
-                Contact
-              </Link>
-            </li>
-            <li>
-              {isAuthenticated ? (
-                <div>
-                  <button type="button" onClick={logOut} className="px-4 py-2">
-                    Logout
-                  </button>
-                </div>
-              ) : (
-                <Link to={routes.login()} className="px-4 py-2">
-                  Login
-                </Link>
-              )}
-            </li>
-          </ul>
-          {isAuthenticated && (
-            <div className="text-xs absolute bottom-1 right-0 mr-12 text-blue-300">
-              {currentUser.email}
-            </div>
-          )}
-        </nav>
+        <nav></nav>
       </header>
       <main className="container relative mx-auto ">
-        {children}</main>
+        <div className="mb-2 flex w-full justify-end">
+          <Datepicker
+            separator={'to'}
+            value={dates}
+            primaryColor={'blue'}
+            onChange={handleValueChange}
+            inputClassName="py-3 px-4 w-full bor border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+            containerClassName="relative max-w-[260px] w-full"
+            showShortcuts={true}
+          />
+        </div>
+        {children}
+      </main>
     </>
   )
 }

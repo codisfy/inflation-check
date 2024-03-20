@@ -2,8 +2,8 @@
 module.exports = {
   content: [
     'src/**/*.{js,jsx,ts,tsx}',
-    // '../node_modules/preline/dist/*.js',
-    '../node_modules/@tremor/**/*.{js,ts,jsx,tsx}',
+    '../node_modules/react-tailwindcss-datepicker/dist/index.esm.js',
+    '../node_modules/preline/preline.js',
   ],
   darkMode: 'class', // or 'class'
   theme: {
@@ -88,5 +88,5 @@ module.exports = {
       },
     },
   },
-  // plugins: [require('preline/plugin')],
-};
+  plugins: [require('@tailwindcss/forms'), require('preline/plugin')],
+}

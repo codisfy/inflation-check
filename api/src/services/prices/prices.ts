@@ -31,6 +31,23 @@ export const Price: PriceRelationResolvers = {
     return db.price.findUnique({ where: { id: root?.id } }).quantityUnit()
   },
 }
+
+export const pricesForProduct: QueryResolvers['pricesForProduct'] = async ({
+  productId,
+  startDate,
+  endDate,
+}) => {
+  return db.price.findMany({
+    where: {
+      productId,
+      date: {
+        gte: startDate,
+        lte: endDate,
+      },
+    },
+  })
+}
+
 export const topPriceChanges: QueryResolvers['topPriceChanges'] = async ({
   startDate,
   endDate,
@@ -87,6 +104,7 @@ export const topPriceChanges: QueryResolvers['topPriceChanges'] = async ({
                             WHERE "oldestPrice" > 0)
     SELECT *
     FROM PriceIncreases
+    WHERE "percentChange" ${orderByDirection === 'DESC' ? '>' : '<='} 0
     ORDER BY "percentChange" ${orderByDirection}
     LIMIT ${limit} OFFSET ${offset};
   `

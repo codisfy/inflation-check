@@ -12,6 +12,30 @@ export const product: QueryResolvers['product'] = ({ id }) => {
   })
 }
 
+export const topPurchasedProducts: QueryResolvers['topPurchasedProducts'] =
+  async ({ startDate, endDate, limit = 5, offset = 0 }) => {
+    // get the products with most number of price entries in the given date range, return count as a field in the response
+    return db.product.findMany({
+      orderBy: {
+        prices: {
+          _count: 'desc',
+        },
+      },
+      take: limit,
+      skip: offset,
+      where: {
+        prices: {
+          some: {
+            date: {
+              gte: startDate,
+              lte: endDate,
+            },
+          },
+        },
+      },
+    })
+  }
+
 export const Product: ProductRelationResolvers = {
   category: (_obj, { root }) => {
     return db.product.findUnique({ where: { id: root?.id } }).category()

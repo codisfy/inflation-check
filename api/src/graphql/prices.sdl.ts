@@ -16,6 +16,18 @@ export const schema = gql`
 
   type Query {
     prices: [Price!]! @requireAuth
+    topPriceChanges(
+      startDate: DateTime!
+      endDate: DateTime!
+      direction: String
+      limit: Int
+      offset: Int
+    ): [PriceChange]! @skipAuth
+    pricesForProduct(
+      productId: Int!
+      startDate: DateTime!
+      endDate: DateTime!
+    ): [Price!]! @skipAuth
   }
 
   input CreatePriceInput {
@@ -48,15 +60,5 @@ export const schema = gql`
     newestDate: DateTime
     percentChange: Float
     direction: String
-  }
-
-  type Query {
-    topPriceChanges(
-      startDate: DateTime!
-      endDate: DateTime!
-      direction: String
-      limit: Int
-      offset: Int
-    ): [PriceChange]! @skipAuth
   }
 `

@@ -14,6 +14,12 @@ export const schema = gql`
 
   type Query {
     products: [Product!]! @requireAuth
+    topPurchasedProducts(
+      startDate: DateTime!
+      endDate: DateTime!
+      limit: Int
+      offset: Int
+    ): [Product]! @skipAuth
   }
 
   input CreateProductInput {

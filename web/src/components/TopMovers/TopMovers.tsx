@@ -1,15 +1,29 @@
 import { PriceChange } from 'types/graphql'
 
-const TopMovers = ({
-  priceChanges,
-  title,
-}: {
+import { Link, routes } from '@redwoodjs/router'
+
+type Props = {
   priceChanges: PriceChange[]
-  title: string
-}) => {
+  direction: string
+  seeMoreLink?: boolean
+}
+
+const TopMovers = ({ priceChanges, direction, seeMoreLink = false }: Props) => {
   return (
     <div>
-      <h2>{title}</h2>
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl">
+          {direction === 'desc' ? 'Most Inflated' : 'Least Inflated'}
+        </h2>
+        {seeMoreLink && (
+          <Link
+            className="text-blue-600 opacity-90 hover:text-blue-500"
+            to={routes.inflationList({ direction })}
+          >
+            See More
+          </Link>
+        )}
+      </div>
       <div>
         <div className="xs:max-w-xl mt-1 hidden w-full max-w-xl sm:max-w-xl md:block md:max-w-7xl md:overflow-auto 2xl:max-w-none">
           <table className="font-inter w-full table-auto border-separate border-spacing-y-1.5 overflow-scroll text-left md:overflow-auto">
@@ -42,9 +56,7 @@ const TopMovers = ({
               )}
               {priceChanges &&
                 priceChanges.map((priceChange) => {
-                  let percentChange = parseFloat((
-                    priceChange.percentChange
-                  ).toFixed(2))
+                  const percentChange = priceChange.percentChange
                   return (
                     <tr
                       key={priceChange.productId}
@@ -55,7 +67,10 @@ const TopMovers = ({
                           <span className="text-xs font-semibold md:text-sm">
                             {priceChange.genericName}
                           </span>
-                          <span className="mt-1 text-xs text-gray-500 md:text-sm">
+                          <span
+                            className="mt-1 text-xs text-gray-500"
+                            title="Name parsed from receipt"
+                          >
                             {priceChange.productName}
                           </span>
                         </div>
@@ -63,9 +78,9 @@ const TopMovers = ({
                       <td className="border-x-0 border-y border-[#7851BD]/20 px-2 py-5 text-xs  font-normal  md:text-sm">
                         <div className="flex flex-col whitespace-nowrap">
                           <span className="text-xs font-semibold md:text-sm ">
-                            CAD {priceChange.oldestPrice}
+                            CAD {priceChange.oldestPrice.toFixed(2)}
                           </span>
-                          <span className="mt-1 text-xs text-gray-500 md:text-sm">
+                          <span className="mt-1 text-xs text-gray-500">
                             {new Date(
                               priceChange.oldestDate
                             ).toLocaleDateString()}
@@ -75,9 +90,9 @@ const TopMovers = ({
                       <td className="border-x-0 border-y border-[#7851BD]/20 px-2 py-5 text-xs  font-normal md:text-sm">
                         <div className="flex flex-col whitespace-nowrap">
                           <span className="text-xs font-semibold md:text-sm ">
-                            CAD {priceChange.newestPrice}
+                            CAD {priceChange.newestPrice.toFixed(2)}
                           </span>
-                          <span className="mt-1 text-xs text-gray-500 md:text-sm">
+                          <span className="mt-1 text-xs text-gray-500">
                             {new Date(
                               priceChange.newestDate
                             ).toLocaleDateString()}
@@ -87,21 +102,42 @@ const TopMovers = ({
                       <td className="rounded-r-lg border-y border-r border-[#7851BD]/20 px-2 py-5 text-xs font-semibold md:text-sm">
                         {percentChange > 0 ? (
                           <div className="flex items-center text-red-500 ">
-                            {percentChange}%
-                            <svg className="text-red-500 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75 12 3m0 0 3.75 3.75M12 3v18" />
+                            {percentChange.toFixed(2)}%
+                            <svg
+                              className="h-4 w-5 text-red-500"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth="1.5"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M8.25 6.75 12 3m0 0 3.75 3.75M12 3v18"
+                              />
                             </svg>
-
                           </div>
                         ) : percentChange < 0 ? (
                           <div className="flex items-center text-green-600">
-                            {percentChange}%
-                            <svg className="text-green-600 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25 12 21m0 0-3.75-3.75M12 21V3" />
+                            {percentChange.toFixed(2)}%
+                            <svg
+                              className="h-4 w-5 text-green-600"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth="1.5"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M15.75 17.25 12 21m0 0-3.75-3.75M12 21V3"
+                              />
                             </svg>
                           </div>
                         ) : (
-                          <div>{percentChange}%</div>
+                          <div>{percentChange.toFixed(2)}%</div>
                         )}
                       </td>
                     </tr>
@@ -118,61 +154,80 @@ const TopMovers = ({
             </div>
           ) : (
             priceChanges.map((priceChange) => {
-              let percentChange = parseFloat((
-                priceChange.percentChange
-              ).toFixed(2))
+              const percentChange = priceChange.percentChange
               return (
                 <div
                   key={priceChange.productId}
                   className="mb-4 rounded-lg bg-white p-4 shadow-lg"
                 >
-                  <div className="font-semibold flex justify-between items-center">
+                  <div className="flex items-center justify-between font-semibold">
                     {priceChange.genericName}
-                    <span className="font-light text-xs">
+                    <span className="text-xs font-light">
                       {priceChange.productName}
                     </span>
                   </div>
-                  <div className="text-gray-500 flex justify-between items-center mt-2">
-                    <div>Oldest Price:</div>
+                  <div className="mt-2 flex items-center justify-between text-gray-500">
+                    <div className="text-sm">Oldest Price:</div>
                     <div>
-                      <div className='text-gray-700'>CAD {priceChange.oldestPrice}</div>
-                      <div className='text-xs text-gray-500'>
-                        {new Date(
-                          priceChange.oldestDate
-                        ).toLocaleDateString()}
+                      <div className="text-gray-700">
+                        CAD {priceChange.oldestPrice.toFixed(2)}
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        {new Date(priceChange.oldestDate).toLocaleDateString()}
                       </div>
                     </div>
                   </div>
-                  <div className="text-gray-500 flex justify-between items-center  mt-2">
-                    <div>Newest Price:</div>
+                  <div className="mt-2 flex items-center justify-between  text-gray-500">
+                    <div className="text-sm">Newest Price:</div>
                     <div>
-                      <div className='text-gray-700'>CAD {priceChange.newestPrice}</div>
-                      <div className='text-xs text-gray-500'>
-                        {new Date(
-                          priceChange.newestDate
-                        ).toLocaleDateString()}
+                      <div className="text-gray-700">
+                        CAD {priceChange.newestPrice.toFixed(2)}
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        {new Date(priceChange.newestDate).toLocaleDateString()}
                       </div>
                     </div>
                   </div>
-                  <div className="text-gray-500 flex justify-between items-center mt-2">
-                    Change:
+                  <div className="mt-2 flex items-center justify-between text-gray-500">
+                    <div className="text-sm">Change:</div>
                     {percentChange > 0 ? (
                       <div className="flex items-center text-red-500 ">
-                        <svg className="text-red-500 w-5 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75 12 3m0 0 3.75 3.75M12 3v18" />
+                        <svg
+                          className="h-4 w-5 text-red-500"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth="1.5"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M8.25 6.75 12 3m0 0 3.75 3.75M12 3v18"
+                          />
                         </svg>
-                        {percentChange}%
-
+                        {percentChange.toFixed(2)}%
                       </div>
                     ) : percentChange < 0 ? (
                       <div className="flex items-center text-green-600">
-                        <svg className="text-green-600 w-5 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25 12 21m0 0-3.75-3.75M12 21V3" />
+                        <svg
+                          className="h-4 w-5 text-green-600"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth="1.5"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M15.75 17.25 12 21m0 0-3.75-3.75M12 21V3"
+                          />
                         </svg>
-                        {percentChange}%
+                        {percentChange.toFixed(2)}%
                       </div>
                     ) : (
-                      <div>{percentChange}%</div>
+                      <div>{percentChange.toFixed(2)}%</div>
                     )}
                   </div>
                 </div>
