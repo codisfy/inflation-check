@@ -14,6 +14,10 @@ export const schema = gql`
     quantityUnit: QuantityUnit!
   }
 
+  type PricesWithProduct {
+    prices: [Price!]!
+    product: Product
+  }
   type Query {
     prices: [Price!]! @requireAuth
     topPriceChanges(
@@ -27,7 +31,7 @@ export const schema = gql`
       productId: Int!
       startDate: DateTime!
       endDate: DateTime!
-    ): [Price!]! @skipAuth
+    ): PricesWithProduct! @skipAuth
   }
 
   input CreatePriceInput {

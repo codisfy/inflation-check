@@ -105,18 +105,21 @@ export const Success = ({
         direction={direction}
         seeMoreLink={seeMoreLink}
       />
-      <div className="mt-4 flex justify-between">
-        <Link to={routes.home()}>Back</Link>
-        {total === numberOfLoads * limit && (
-          <button
-            type="button"
-            className="ml-4 inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-blue-100 px-4 py-3 text-sm font-semibold text-blue-800 hover:bg-blue-200 disabled:pointer-events-none disabled:opacity-50 dark:text-blue-400 dark:hover:bg-blue-900 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-            onClick={loadMore}
-          >
-            Load More
-          </button>
-        )}
-      </div>
+      {/*If there is not seem more link that means we are on the dashboard*/}
+      {!seeMoreLink && (
+        <div className="mt-4 flex justify-between">
+          <Link to={routes.home()}>Back</Link>
+          {total === numberOfLoads * limit && (
+            <button
+              type="button"
+              className="ml-4 inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-blue-100 px-4 py-3 text-sm font-semibold text-blue-800 hover:bg-blue-200 disabled:pointer-events-none disabled:opacity-50 dark:text-blue-400 dark:hover:bg-blue-900 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+              onClick={loadMore}
+            >
+              Load More
+            </button>
+          )}
+        </div>
+      )}
     </div>
   )
 }

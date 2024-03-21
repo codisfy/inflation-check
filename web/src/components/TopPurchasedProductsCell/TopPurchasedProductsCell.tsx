@@ -46,10 +46,8 @@ export const Success = ({
   topPurchasedProducts,
   startDate,
   endDate,
-}: CellSuccessProps<
-  TopPurchasedProductsQuery,
-  TopPurchasedProductsQueryVariables
->) => {
+}: CellSuccessProps<TopPurchasedProductsQuery> &
+  TopPurchasedProductsQueryVariables) => {
   return (
     <>
       {topPurchasedProducts.map((item) => {
@@ -57,7 +55,6 @@ export const Success = ({
           <ProductPriceChartCell
             key={item.id}
             productId={item.id}
-            productName={item.genericName}
             startDate={startDate}
             endDate={endDate}
           />

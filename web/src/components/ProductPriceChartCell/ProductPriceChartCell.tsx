@@ -21,8 +21,15 @@ export const QUERY: TypedDocumentNode<
       startDate: $startDate
       endDate: $endDate
     ) {
-      date
-      price
+      prices {
+        date
+        price
+      }
+      product {
+        id
+        name
+        genericName
+      }
     }
   }
 `
@@ -39,16 +46,14 @@ export const Failure = ({
 
 export const Success = ({
   pricesForProduct,
-  productId,
-  productName,
-}: CellSuccessProps<pricesForProduct, pricesForProductVariables>) => {
+}: CellSuccessProps<pricesForProduct> & pricesForProductVariables) => {
   const data = {
     options: {
       markers: {
         size: 4,
       },
       chart: {
-        id: `chart-product-id-${productId}`,
+        id: `chart-product-id-${pricesForProduct.product.id}`,
         toolbar: {
           show: false,
         },
@@ -57,7 +62,7 @@ export const Success = ({
         type: 'datetime',
       },
       title: {
-        text: productName,
+        text: pricesForProduct.product.genericName,
         align: 'left',
         style: {
           fontFamily: 'inherit',
@@ -69,14 +74,14 @@ export const Success = ({
     series: [
       {
         name: 'Price',
-        data: pricesForProduct
+        data: pricesForProduct.prices
           .map((price) => [new Date(price.date).getTime(), price.price])
           .sort((a, b) => a[0] - b[0]),
       },
     ],
   }
   return (
-    <div className="w-full">
+    <div className="w-full  max-w-[1024px]">
       <Chart
         options={data.options}
         series={data.series}

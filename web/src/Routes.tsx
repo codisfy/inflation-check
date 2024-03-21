@@ -27,6 +27,7 @@ const Routes = () => {
         <Route path="/" page={HomePage} name="home" />
         <Route path="/contact" page={ContactPage} name="contact" />
         <Route path="/inflation-list" page={InflationListPage} name="inflationList" />
+        <Route path="/product/{id:Int}/{productName}" page={ProductPage} name="product" />
       </Set>
       <Route notfound page={NotFoundPage} name={'not-found'} />
     </Router>

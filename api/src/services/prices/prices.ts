@@ -19,6 +19,7 @@ export const price: QueryResolvers['price'] = ({ id }) => {
 
 export const Price: PriceRelationResolvers = {
   product: (_obj, { root }) => {
+    console.log('root', new Date().getTime(), Math.random())
     return db.price.findUnique({ where: { id: root?.id } }).product()
   },
   store: (_obj, { root }) => {
@@ -37,7 +38,7 @@ export const pricesForProduct: QueryResolvers['pricesForProduct'] = async ({
   startDate,
   endDate,
 }) => {
-  return db.price.findMany({
+  const prices = await db.price.findMany({
     where: {
       productId,
       date: {
@@ -46,6 +47,17 @@ export const pricesForProduct: QueryResolvers['pricesForProduct'] = async ({
       },
     },
   })
+
+  const product = await db.product.findUnique({
+    where: {
+      id: productId,
+    },
+  })
+
+  return {
+    prices,
+    product,
+  }
 }
 
 export const topPriceChanges: QueryResolvers['topPriceChanges'] = async ({
