@@ -57,7 +57,6 @@ export const schema = gql`
   type PriceChange {
     productId: Int
     productName: String
-    genericName: String
     oldestPrice: Float
     newestPrice: Float
     oldestDate: DateTime

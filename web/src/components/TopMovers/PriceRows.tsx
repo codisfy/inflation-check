@@ -15,7 +15,7 @@ export const PriceRowDesktop = ({
       navigate(
         routes.product({
           id: priceChange.productId,
-          productName: priceChange.genericName,
+          productName: priceChange.productName,
         })
       )
     }
@@ -24,7 +24,7 @@ export const PriceRowDesktop = ({
         navigate(
           routes.product({
             id: priceChange.productId,
-            productName: priceChange.genericName,
+            productName: priceChange.productName,
           })
         )
       }
@@ -34,12 +34,6 @@ export const PriceRowDesktop = ({
     <td className="rounded-l-lg border-y border-l py-5 pl-3 text-sm font-normal">
       <div className="flex flex-col whitespace-nowrap">
         <span className="text-xs font-semibold md:text-sm">
-          {priceChange.genericName}
-        </span>
-        <span
-          className="mt-1 text-xs text-gray-500"
-          title="Name parsed from receipt"
-        >
           {priceChange.productName}
         </span>
       </div>
@@ -122,14 +116,13 @@ export const PriceRowMobile = ({
       navigate(
         routes.product({
           id: priceChange.productId,
-          productName: priceChange.genericName,
+          productName: priceChange.productName,
         })
       )
     }
   >
     <div className="flex items-center justify-between font-semibold">
-      {priceChange.genericName}
-      <span className="text-xs font-light">{priceChange.productName}</span>
+      {priceChange.productName}
     </div>
     <div className="mt-2 flex items-center justify-between text-gray-500">
       <div className="text-sm">Oldest Price:</div>

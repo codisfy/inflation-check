@@ -37,7 +37,6 @@ export const QUERY: TypedDocumentNode<PriceChange[], variablesWithTitle> = gql`
     ) {
       productId
       productName
-      genericName
       oldestPrice
       newestPrice
       oldestDate

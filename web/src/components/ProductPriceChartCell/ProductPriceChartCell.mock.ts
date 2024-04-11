@@ -6,7 +6,6 @@ export const standard = (/* vars, { ctx, req } */) => ({
       price: 1.58,
       product: {
         name: 'CABBAGE GREEN',
-        genericName: 'Green Cabbage',
       },
     },
     {
@@ -14,7 +13,6 @@ export const standard = (/* vars, { ctx, req } */) => ({
       price: 2.08,
       product: {
         name: 'CABBAGE GREEN',
-        genericName: 'Green Cabbage',
       },
     },
     {
@@ -22,7 +20,6 @@ export const standard = (/* vars, { ctx, req } */) => ({
       price: 1.18,
       product: {
         name: 'CABBAGE GREEN',
-        genericName: 'Green Cabbage',
       },
     },
     {
@@ -30,7 +27,6 @@ export const standard = (/* vars, { ctx, req } */) => ({
       price: 2,
       product: {
         name: 'CABBAGE GREEN',
-        genericName: 'Green Cabbage',
       },
     },
     {
@@ -38,7 +34,6 @@ export const standard = (/* vars, { ctx, req } */) => ({
       price: 3.08,
       product: {
         name: 'CABBAGE GREEN',
-        genericName: 'Green Cabbage',
       },
     },
     {
@@ -46,7 +41,6 @@ export const standard = (/* vars, { ctx, req } */) => ({
       price: 1.08,
       product: {
         name: 'CABBAGE GREEN',
-        genericName: 'Green Cabbage',
       },
     },
     {
@@ -54,7 +48,6 @@ export const standard = (/* vars, { ctx, req } */) => ({
       price: 1.08,
       product: {
         name: 'CABBAGE GREEN',
-        genericName: 'Green Cabbage',
       },
     },
     {
@@ -62,7 +55,6 @@ export const standard = (/* vars, { ctx, req } */) => ({
       price: 1.08,
       product: {
         name: 'CABBAGE GREEN',
-        genericName: 'Green Cabbage',
       },
     },
     {
@@ -70,7 +62,6 @@ export const standard = (/* vars, { ctx, req } */) => ({
       price: 1.08,
       product: {
         name: 'CABBAGE GREEN',
-        genericName: 'Green Cabbage',
       },
     },
   ],

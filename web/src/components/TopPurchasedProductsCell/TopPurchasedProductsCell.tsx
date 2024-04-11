@@ -29,7 +29,6 @@ export const QUERY: TypedDocumentNode<
     ) {
       id
       name
-      genericName
     }
   }
 `

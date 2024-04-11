@@ -28,7 +28,6 @@ export const QUERY: TypedDocumentNode<
       product {
         id
         name
-        genericName
       }
     }
   }
@@ -62,7 +61,7 @@ export const Success = ({
         type: 'datetime',
       },
       title: {
-        text: pricesForProduct.product.genericName,
+        text: pricesForProduct.product.name,
         align: 'left',
         style: {
           fontFamily: 'inherit',

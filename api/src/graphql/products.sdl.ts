@@ -2,7 +2,6 @@ export const schema = gql`
   type Product {
     id: Int!
     name: String!
-    genericName: String
     description: String
     categoryId: Int!
     baseUnitId: Int!
@@ -24,7 +23,6 @@ export const schema = gql`
 
   input CreateProductInput {
     name: String!
-    genericName: String
     description: String
     categoryId: Int!
     baseUnitId: Int!
@@ -33,7 +31,6 @@ export const schema = gql`
 
   input UpdateProductInput {
     name: String
-    genericName: String
     description: String
     categoryId: Int
     baseUnitId: Int

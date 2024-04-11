@@ -88,7 +88,6 @@ export const topPriceChanges: QueryResolvers['topPriceChanges'] = async ({
                                  pp."price",
                                  pp."date",
                                  pr."name"                                                               AS "productName",
-                                 pr."genericName",
                                  ROW_NUMBER() OVER (PARTITION BY pp."productId" ORDER BY pp."date")      AS rn_asc,
                                  ROW_NUMBER() OVER (PARTITION BY pp."productId" ORDER BY pp."date" DESC) AS rn_desc
                           FROM ProductPrices pp
@@ -96,7 +95,6 @@ export const topPriceChanges: QueryResolvers['topPriceChanges'] = async ({
                                  JOIN PriceCount pc ON pp."productId" = pc."productId"),
          OldestNewestPrices AS (SELECT a."productId",
                                        a."productName",
-                                       a."genericName",
                                        a."price" AS "oldestPrice",
                                        a."date"  AS "oldestDate",
                                        b."price" AS "newestPrice",
@@ -106,7 +104,6 @@ export const topPriceChanges: QueryResolvers['topPriceChanges'] = async ({
                                 WHERE a.rn_asc = 1),
          PriceIncreases AS (SELECT "productId",
                                    "productName",
-                                   "genericName",
                                    "oldestPrice",
                                    "oldestDate",
                                    "newestPrice",
